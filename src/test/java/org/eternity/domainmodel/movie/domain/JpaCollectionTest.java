@@ -14,33 +14,28 @@ public class JpaCollectionTest {
 	private EntityManager em;
 
 	@Test
-	public void persist() {
-		Movie movie = new Movie("한산", 120, Money.wons(10000));
-		movie.addPrice(Money.wons(2000));
-
-	    em.persist(movie);
-		em.flush();
-		em.clear();
-
-		Movie loadedMovie = em.find(Movie.class, movie.getId());
-		loadedMovie.addPrice(Money.wons(1000));
-
-		em.flush();
-	}
-
-		@Test
 	public void remove() {
 		Movie movie = new Movie("한산", 120, Money.wons(10000));
-		movie.addPrice(Money.wons(1000));
-		movie.addPrice(Money.wons(2000));
+		Screening screening1 = new Screening(1 , LocalDateTime.of(2024, 12, 9, 9, 0));
+		Screening screening2 = new Screening(2 , LocalDateTime.of(2024, 12, 9, 11, 0));
+
+		movie.addScreening(screening1);
+		movie.addScreening(screening2);
 
 		em.persist(movie);
 		em.flush();
-		em.clear();
 
-		Movie loadedMovie = em.find(Movie.class, movie.getId());
-		loadedMovie.getPrices().clear();
+		movie.getScreenings().remove(screening2);
+		em.flush();
+	}
 
+	@Test
+	public void persist() {
+		Movie movie = new Movie("한산", 120, Money.wons(10000));
+		movie.addScreening(new Screening(1 , LocalDateTime.of(2024, 12, 9, 9, 0)));
+		movie.addScreening(new Screening(2 , LocalDateTime.of(2024, 12, 9, 11, 0)));
+
+		em.persist(movie);
 		em.flush();
 	}
 }

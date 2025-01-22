@@ -18,13 +18,9 @@ public class Movie {
     private Integer runningTime;
     private Money fee;
 
-    @ElementCollection
-    @CollectionTable(name = "PRICES", joinColumns = @JoinColumn(name="MOVIE_ID"))
-    private Set<Money> prices = new HashSet<>();
-
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name="MOVIE_ID")
-//    private Collection<Screening> screenings = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="MOVIE_ID")
+    private Collection<Screening> screenings = new ArrayList<>();
 
     public Movie(String title, Integer runningTime, Money fee) {
         this.title = title;
@@ -32,11 +28,7 @@ public class Movie {
         this.fee = fee;
     }
 
-    public Money getFee() {
-        return fee;
-    }
-
-    public void addPrice(Money price) {
-        this.prices.add(price);
+    public void addScreening(Screening screening) {
+        this.screenings.add(screening);
     }
 }

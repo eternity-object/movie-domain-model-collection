@@ -21,15 +21,4 @@ public class Screening {
         this.sequence = sequence;
         this.screeningTime = screeningTime;
     }
-
-//    @ManyToOne
-//    @JoinColumn(name="MOVIE_ID")
-//    private Movie movie;
-//
-//    public Screening(Movie movie, int sequence, LocalDateTime screeningTime) {
-//        this.movie = movie;
-//        this.movie.addScreening(this);
-//        this.sequence = sequence;
-//        this.screeningTime = screeningTime;
-//    }
 }
