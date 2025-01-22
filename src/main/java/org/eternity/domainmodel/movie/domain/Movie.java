@@ -22,10 +22,6 @@ public class Movie {
     @CollectionTable(name = "PRICES", joinColumns = @JoinColumn(name="MOVIE_ID"))
     private Set<Money> prices = new HashSet<>();
 
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name="MOVIE_ID")
-//    private Collection<Screening> screenings = new ArrayList<>();
-
     public Movie(String title, Integer runningTime, Money fee) {
         this.title = title;
         this.runningTime = runningTime;

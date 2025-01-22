@@ -28,7 +28,7 @@ public class JpaCollectionTest {
 		em.flush();
 	}
 
-		@Test
+	@Test
 	public void remove() {
 		Movie movie = new Movie("한산", 120, Money.wons(10000));
 		movie.addPrice(Money.wons(1000));
